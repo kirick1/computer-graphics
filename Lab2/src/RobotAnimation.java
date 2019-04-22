@@ -9,27 +9,26 @@ import javax.swing.Timer;
 
 public class RobotAnimation extends JPanel implements ActionListener {
   private double radius = 200;
+
   private double[][] points = {
-      {0, 70}, {0, 30}, {-30, 20}, {0, 10}, {0, 30}, {40, 30}, {40, 10}, {70, 30}, {40, 30}, {30, 70},
-      {90, 70}, {90, 115}, {70, 115}, {70, 170}, {80, 170}, {80, 180}, {40, 180}, {40, 140}, {10, 140},
-      {10, 170}, {20, 170}, {20, 180}, {-20, 180}, {-20, 130}, {-40, 130}, {-40, 70}, {0, 70}
+      {0, -100}, {0, -140}, {-30, -150}, {0, -160}, {0, -140}, {40, -140}, {40, -160}, {70, -140}, {40, -140}, {40, -100},
+      {90, -100}, {90, -55}, {70, -55}, {70, 0}, {80, 0}, {80, 10}, {40, 10}, {40, -30}, {10, -30},
+      {10, 0}, {20, 0}, {20, 10}, {-20, 10}, {-20, -50}, {-40, -50}, {-40, -100}, {0, -100}
   };
   private Timer timer;
 
   private double angle = 0;
 
   private double scale = 1;
-  private double delta = 0.01;
 
   private double dx = 1;
   private double tx = 0;
-  private double dy = 1;
 
   private double ty = 6;
   private static int maxWidth;
   private static int maxHeight;
 
-  RobotAnimation() {
+  private RobotAnimation() {
     this.timer = new Timer(10, this);
     this.timer.start();
   }
@@ -65,41 +64,27 @@ public class RobotAnimation extends JPanel implements ActionListener {
   }
   public void actionPerformed(ActionEvent e) {
     double radiusInSquare = Math.pow(this.radius, 2);
-    if (tx <= 0 && ty < 0){
+    if (tx <= 0 && ty < 0) {
       tx -= dx;
       ty = (-1) * Math.abs(Math.sqrt(radiusInSquare - Math.pow(tx, 2)));
-    } else if (tx > 0 && ty <= 0){
+    } else if (tx > 0 && ty <= 0) {
       tx -= dx;
       ty = (-1) * Math.abs(Math.sqrt(radiusInSquare - Math.pow(tx, 2)));
-    } else if (tx >= 0 && ty > 0){
+    } else if (tx >= 0 && ty > 0) {
       tx += dx;
       ty = Math.abs(Math.sqrt(radiusInSquare - Math.pow(tx, 2)));
-    } else if (tx < 0 && ty >= 0){
+    } else if (tx < 0 && ty >= 0) {
       tx += dx;
       ty = Math.abs(Math.sqrt(radiusInSquare - Math.pow(tx, 2)));
     }
-
     angle += 0.01;
-
     repaint();
-    /*if (this.scale < 0.01) this.delta = -this.delta;
-    else if (this.scale > 0.99) this.delta = -this.delta;
-    if (this.tx < -maxWidth / 3) this.dx = -this.dx;
-    else if (this.tx > maxWidth / 3) this.dx = -this.dx;
-    if (this.ty < -maxHeight / 3) this.dy = -this.dy;
-    else if (this.ty > maxHeight / 3) this.dy = -this.dy;
-    this.scale += this.delta;
-    this.angle += 0.01;
-    this.tx += this.dx;
-    this.ty += this.dy;
-
-    repaint();*/
   }
   public static void main(String[] args) {
     JFrame frame = new JFrame("Lab2");
     frame.add(new RobotAnimation());
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(500, 500);
+    frame.setSize(800, 600);
     frame.setResizable(false);
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
