@@ -8,10 +8,11 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class RobotAnimation extends JPanel implements ActionListener {
+  private double radius = 200;
   private double[][] points = {
-      {130, 70}, {130, 30}, {100, 20}, {130, 10}, {130, 30}, {170, 30}, {170, 10}, {200, 30}, {170, 30}, {170, 70},
-      {220, 70}, {220, 115}, {200, 115}, {200, 170}, {210, 170}, {210, 180}, {170, 180}, {170, 140}, {140, 140},
-      {140, 170}, {150, 170}, {150, 180}, {110, 180}, {110, 130}, {90, 130}, {90, 70}, {130, 70}
+      {0, 70}, {0, 30}, {-30, 20}, {0, 10}, {0, 30}, {40, 30}, {40, 10}, {70, 30}, {40, 30}, {30, 70},
+      {90, 70}, {90, 115}, {70, 115}, {70, 170}, {80, 170}, {80, 180}, {40, 180}, {40, 140}, {10, 140},
+      {10, 170}, {20, 170}, {20, 180}, {-20, 180}, {-20, 130}, {-40, 130}, {-40, 70}, {0, 70}
   };
   private Timer timer;
 
@@ -36,6 +37,9 @@ public class RobotAnimation extends JPanel implements ActionListener {
   public void paint(Graphics g) {
     Graphics2D g2d = (Graphics2D)g;
 
+    BasicStroke bs = new BasicStroke(16, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND);
+    g2d.setStroke(bs);
+
     RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
     g2d.setRenderingHints(rh);
@@ -44,25 +48,41 @@ public class RobotAnimation extends JPanel implements ActionListener {
     g2d.clearRect(0, 0, maxWidth, maxHeight);
 
     g2d.translate(maxWidth / 2, maxHeight / 2);
-    // Перетворення для анімації руху.
     g2d.translate(this.tx, this.ty);
-    // Створення зірки
-    GeneralPath star = new GeneralPath();
-    star.moveTo(this.points[0][0], this.points[0][1]);
-    for (int i = 1; i < this.points.length; i++) star.lineTo(this.points[i][0], this.points[i][1]);
-    star.closePath();
-    // Перетворення для анімації повороту. Якщо не задати 2 та 3 параметри – поворот відбудеться відносно центру координат
-    g2d.rotate(this.angle, star.getBounds2D().getCenterX(), star.getBounds2D().getCenterY());
-    // Перетворення для анімації масштабу
+
+    GeneralPath figure = new GeneralPath();
+    figure.moveTo(this.points[0][0], this.points[0][1]);
+
+    for (int i = 1; i < this.points.length; i++)
+      figure.lineTo(this.points[i][0], this.points[i][1]);
+
+    figure.closePath();
+
+    g2d.rotate(this.angle, figure.getBounds2D().getCenterX(), figure.getBounds2D().getCenterY());
     g2d.scale(this.scale, 0.99);
-    // Перетворення для анімації зміни прозорості
     g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) this.scale));
-    // Далі йдуть всі ті методи, що необхідні для власне малювання малюнку
-    g2d.fill(star);
+    g2d.fill(figure);
   }
-  // Цей метод буде викликано щоразу, як спрацює таймер
   public void actionPerformed(ActionEvent e) {
-    if (this.scale < 0.01) this.delta = -this.delta;
+    double radiusInSquare = Math.pow(this.radius, 2);
+    if (tx <= 0 && ty < 0){
+      tx -= dx;
+      ty = (-1) * Math.abs(Math.sqrt(radiusInSquare - Math.pow(tx, 2)));
+    } else if (tx > 0 && ty <= 0){
+      tx -= dx;
+      ty = (-1) * Math.abs(Math.sqrt(radiusInSquare - Math.pow(tx, 2)));
+    } else if (tx >= 0 && ty > 0){
+      tx += dx;
+      ty = Math.abs(Math.sqrt(radiusInSquare - Math.pow(tx, 2)));
+    } else if (tx < 0 && ty >= 0){
+      tx += dx;
+      ty = Math.abs(Math.sqrt(radiusInSquare - Math.pow(tx, 2)));
+    }
+
+    angle += 0.01;
+
+    repaint();
+    /*if (this.scale < 0.01) this.delta = -this.delta;
     else if (this.scale > 0.99) this.delta = -this.delta;
     if (this.tx < -maxWidth / 3) this.dx = -this.dx;
     else if (this.tx > maxWidth / 3) this.dx = -this.dx;
@@ -73,10 +93,10 @@ public class RobotAnimation extends JPanel implements ActionListener {
     this.tx += this.dx;
     this.ty += this.dy;
 
-    repaint();
+    repaint();*/
   }
   public static void main(String[] args) {
-    JFrame frame = new JFrame("Приклад анімації");
+    JFrame frame = new JFrame("Lab2");
     frame.add(new RobotAnimation());
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setSize(500, 500);
