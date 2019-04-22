@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class RobotAnimation extends JPanel implements ActionListener {
-  private double radius = 200;
+  private double radius = 100;
 
   private double[][] points = {
       {0, -100}, {0, -140}, {-30, -150}, {0, -160}, {0, -140}, {40, -140}, {40, -160}, {70, -140}, {40, -140}, {40, -100},
@@ -18,7 +18,7 @@ public class RobotAnimation extends JPanel implements ActionListener {
   private Timer timer;
 
   private double angle = 0;
-
+  private double delta = 0.01;
   private double scale = 1;
 
   private double dx = 1;
@@ -64,20 +64,24 @@ public class RobotAnimation extends JPanel implements ActionListener {
   }
   public void actionPerformed(ActionEvent e) {
     double radiusInSquare = Math.pow(this.radius, 2);
-    if (tx <= 0 && ty < 0) {
-      tx -= dx;
-      ty = (-1) * Math.abs(Math.sqrt(radiusInSquare - Math.pow(tx, 2)));
-    } else if (tx > 0 && ty <= 0) {
-      tx -= dx;
-      ty = (-1) * Math.abs(Math.sqrt(radiusInSquare - Math.pow(tx, 2)));
-    } else if (tx >= 0 && ty > 0) {
-      tx += dx;
-      ty = Math.abs(Math.sqrt(radiusInSquare - Math.pow(tx, 2)));
-    } else if (tx < 0 && ty >= 0) {
-      tx += dx;
-      ty = Math.abs(Math.sqrt(radiusInSquare - Math.pow(tx, 2)));
+    if (this.scale < 0.01 ) this.delta = -this.delta;
+    else if (scale > 0.99) this.delta = -this.delta;
+
+    if (this.tx <= 0 && this.ty < 0) {
+      this.tx -= this.dx;
+      this.ty = (-1) * Math.abs(Math.sqrt(radiusInSquare - Math.pow(this.tx, 2)));
+    } else if (this.tx > 0 && this.ty <= 0) {
+      this.tx -= this.dx;
+      this.ty = (-1) * Math.abs(Math.sqrt(radiusInSquare - Math.pow(this.tx, 2)));
+    } else if (this.tx >= 0 && this.ty > 0) {
+      this.tx += this.dx;
+      this.ty = Math.abs(Math.sqrt(radiusInSquare - Math.pow(this.tx, 2)));
+    } else if (this.tx < 0 && this.ty >= 0) {
+      this.tx += this.dx;
+      this.ty = Math.abs(Math.sqrt(radiusInSquare - Math.pow(this.tx, 2)));
     }
-    angle += 0.01;
+    this.scale += this.delta;
+    this.angle += 0.01;
     repaint();
   }
   public static void main(String[] args) {
