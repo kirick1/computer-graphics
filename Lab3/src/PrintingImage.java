@@ -96,8 +96,8 @@ public class PrintingImage extends Application{
 		           }
 		   }
 		   }
-		primaryStage.setScene(scene); // ���������� �����
-	    primaryStage.show(); // ��������� �����
+		primaryStage.setScene(scene);
+	    primaryStage.show();
 	    
 		reader.close();
 		
@@ -106,9 +106,9 @@ public class PrintingImage extends Application{
 		int lich = 0;
 		
 		BufferedOutputStream writer = new BufferedOutputStream (new FileOutputStream("map.txt"));
-		for(int i=0;i<height;i++)     // ���� �� ����� ���������� �� �����
+		for(int i=0;i<height;i++)
 		{ 
-		   for(int j=0;j<width;j++)         // ���� �� ����� ���������� �� ������
+		   for(int j=0;j<width;j++)
 		   {
 			   if (map[j][i] == '1')
 			   {
@@ -130,7 +130,7 @@ public class PrintingImage extends Application{
 		   path2.getElements().addAll(
 				new MoveTo(black[l][0],black[l][1]),
 				new LineTo (black[l+1][0],black[l+1][1])
-				);
+			 );
 		}
 		
 		final Rectangle rectPath = new Rectangle (0, 0, 60, 60);
@@ -165,8 +165,7 @@ public class PrintingImage extends Application{
 		Circle cir1 = new Circle (40,340,3, Color.BLACK);
 		root.getChildren().add(cir1);
 		
-		RotateTransition rotForArc1 = 
-			     new RotateTransition(Duration.millis(500), arc1);
+		RotateTransition rotForArc1 = new RotateTransition(Duration.millis(500), arc1);
 		rotForArc1.setByAngle(20f);
 		rotForArc1.setCycleCount(20);
 		rotForArc1.setAutoReverse(true);
@@ -202,21 +201,18 @@ public class PrintingImage extends Application{
 		tran3.setToX(200);
 		tran3.play();
 		 
-		FadeTransition fadeTransition = 
-		            new FadeTransition(Duration.seconds(12.0), rectPath);
-		        fadeTransition.setFromValue(1.0f);
-		        fadeTransition.setToValue(0.0f);
-		        fadeTransition.setCycleCount(1);
+		FadeTransition fadeTransition = new FadeTransition(Duration.seconds(12.0), rectPath);
+		fadeTransition.setFromValue(1.0f);
+		fadeTransition.setToValue(0.0f);
+		fadeTransition.setCycleCount(1);
 		        
-		        ScaleTransition scaleTransition = 
-				        new ScaleTransition(Duration.seconds(20.0), rectPath);
-				scaleTransition.setToX(-1f);
-				scaleTransition.setToY(-1f);        
+		ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(20.0), rectPath);
+		scaleTransition.setToX(-1f);
+		scaleTransition.setToY(-1f);
 		
 		
-		ParallelTransition parallelTransition = 
-				new ParallelTransition();
-			parallelTransition.getChildren().addAll(
+		ParallelTransition parallelTransition = new ParallelTransition();
+		parallelTransition.getChildren().addAll(
 			           tran,
 			           tran1,
 			           tran2,
@@ -227,10 +223,7 @@ public class PrintingImage extends Application{
 			           rotForArc2,
 			           scaleTransition
 			);
-			
-			parallelTransition.play();	
-			
-			
+			parallelTransition.play();
 	}
 	
 	private String returnPixelColor (int color)
@@ -238,22 +231,22 @@ public class PrintingImage extends Application{
 		String col = "BLACK";
 		switch(color)
 		   {
-		      case 0: return "BLACK";     //BLACK;
-		      case 1: return "LIGHTCORAL";  //LIGHTCORAL;
-		      case 2: return "GREEN";     //GREEN
-		      case 3: return "BROWN";     //BROWN
-		      case 4: return "BLUE";      //BLUE;
-		      case 5: return "MAGENTA";   //MAGENTA;
-		      case 6: return "CYAN";      //CYAN;
-		      case 7: return "LIGHTGRAY"; //LIGHTGRAY;
-		      case 8: return "DARKGRAY";  //DARKGRAY;
-		      case 9: return "RED";       //RED;
-		      case 10:return "LIGHTGREEN";//LIGHTGREEN
-		      case 11:return "YELLOW";    //YELLOW;
-		      case 12:return "LIGHTBLUE"; //LIGHTBLUE;
-		      case 13:return "LIGHTPINK";    //LIGHTMAGENTA
-		      case 14:return "LIGHTCYAN";    //LIGHTCYAN;
-		      case 15:return "WHITE";    //WHITE;
+		      case 0: return "BLACK";
+		      case 1: return "LIGHTCORAL";
+		      case 2: return "GREEN";
+		      case 3: return "BROWN";
+		      case 4: return "BLUE";
+		      case 5: return "MAGENTA";
+		      case 6: return "CYAN";
+		      case 7: return "LIGHTGRAY";
+		      case 8: return "DARKGRAY";
+		      case 9: return "RED";
+		      case 10:return "LIGHTGREEN";
+		      case 11:return "YELLOW";
+		      case 12:return "LIGHTBLUE";
+		      case 13:return "LIGHTPINK";
+		      case 14:return "LIGHTCYAN";
+		      case 15:return "WHITE";
 		   }
 		   return col;
 	}
