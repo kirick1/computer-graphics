@@ -1,3 +1,5 @@
+package lab3;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -6,23 +8,23 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
 import javafx.scene.paint.Color;
- 
+
 public class ReadingFromFileBMPWithStandart extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) {
-     
+
         // Create Image and ImageView objects
-    	Image image = new Image("tr33.bmp");
+        Image image = new Image("https://s.ill.in.ua/i/news/630x373/386/386537.png");
         ImageView imageView = new ImageView();
         imageView.setImage(image);
-       
+
         // Obtain PixelReader
         PixelReader pixelReader = image.getPixelReader();
         System.out.println("Image Width: "+image.getWidth());
         System.out.println("Image Height: "+image.getHeight());
         System.out.println("Pixel Format: "+pixelReader.getPixelFormat());
-        
+
         // Determine the color of each pixel in the image
         for (int readY = 0; readY < image.getHeight(); readY++) {
             for (int readX = 0; readX < image.getWidth(); readX++) {
@@ -37,7 +39,7 @@ public class ReadingFromFileBMPWithStandart extends Application {
                 System.out.println("Saturation = " + color.getSaturation());
             }
         }
-           
+
         // Display image on screen
         StackPane root = new StackPane();
         root.getChildren().add(imageView);
@@ -46,7 +48,7 @@ public class ReadingFromFileBMPWithStandart extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
- 
+
     public static void main(String[] args) {
         launch(args);
     }
