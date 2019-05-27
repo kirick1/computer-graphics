@@ -11,13 +11,13 @@ public class ReadingImageFromFile {
         BufferedInputStream reader = new BufferedInputStream (new
                 FileInputStream(filename)); // потік для читання
         BufferedOutputStream writer = new BufferedOutputStream (new
-                FileOutputStream("primer_bmp.txt")); // потік для запису зчитаних зображень про пікселі у ASCII кодах
+                FileOutputStream("Lab3/primer_bmp.txt")); // потік для запису зчитаних зображень про пікселі у ASCII кодах
         while ((line = reader.read())!=-1) {
             writer.write(line);
         }
         reader.close();
         writer.close();
-        BufferedInputStream reader1 = new BufferedInputStream (new FileInputStream("primer_bmp.txt"));
+        BufferedInputStream reader1 = new BufferedInputStream (new FileInputStream("Lab3/primer_bmp.txt"));
         ReadingHeaderFromBitmapImage reading = new ReadingHeaderFromBitmapImage();
         HeaderBitmapImage hbi = reading.Reading(reader1);
         pr = reading.pr;
@@ -43,6 +43,6 @@ public class ReadingImageFromFile {
     }
 
     public static void main(String[] args) throws IOException{
-        loadBitmapImage("./sources/3.bmp");
+        loadBitmapImage("Lab3/sources/3.bmp");
     }
 }

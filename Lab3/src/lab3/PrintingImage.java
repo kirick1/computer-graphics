@@ -26,14 +26,14 @@ import javafx.util.Duration;
 
 public class PrintingImage extends Application{
 
-    private HeaderBitmapImage image; // �������� ����, ��� ������ ��'��� � ����������� ��� ��������� ����������
-    private int numberOfPixels; // �������� ���� ��� ���������� ������� ������ � ������ ��������
+    private HeaderBitmapImage image;
+    private int numberOfPixels;
 
     public PrintingImage(){
 
     }
 
-    public PrintingImage(HeaderBitmapImage image) // �������������� ����������� �����������
+    public PrintingImage(HeaderBitmapImage image)
     {
         this.image = image;
     }
@@ -41,7 +41,7 @@ public class PrintingImage extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        ReadingImageFromFile.loadBitmapImage("./sources/trajectory.bmp");
+        ReadingImageFromFile.loadBitmapImage("Lab3/sources/trajectory.bmp");
         this.image = ReadingImageFromFile.pr.image;
         int width = (int)this.image.getWidth();
         int height = (int)this.image.getHeight();
@@ -56,39 +56,35 @@ public class PrintingImage extends Application{
         int let1 = 0;
         int let2 = 0;
         char[][] map = new char[width][height];
-        // �������� ���������� ����� ��� �����
-        BufferedInputStream reader = new BufferedInputStream (new FileInputStream("pixels.txt"));
+        BufferedInputStream reader = new BufferedInputStream (new FileInputStream("Lab3/pixels.txt"));
 
 
-        for(int i=0;i<height;i++)     // ���� �� ����� ���������� �� �����
+        for(int i=0;i<height;i++)
         {
-            for(int j=0;j<half;j++)         // ���� �� ����� ���������� �� ������
+            for(int j=0;j<half;j++)
             {
-                let = reader.read();  // ������� ���� ������ � �����
+                let = reader.read();
                 let1=let;
                 let2=let;
-                let1=let1&(0xf0);   // ������� ���� - ������ ������
-                let1=let1>>4;       // ���� �� 4 �������
-                let2=let2&(0x0f);   // �������� ���� - ������ ������
-                if(j*2<width) // ��� �� 1 ������ ���� 2 ����� ��� ��������� ������ �� �������� ������ ����������
+                let1=let1&(0xf0);
+                let1=let1>>4;
+                let2=let2&(0x0f);
+                if(j*2<width)
                 {
-                    cir = new Circle ((j)*2,(height-1-i),1, Color.valueOf((returnPixelColor(let1)))); // �� ��������� ������������
-                    // �������� ���� ������� � 1 ������ �� �������� ���������� �� ��������� ������ returnPixelColor ������� ������
-                    //root.getChildren().add(cir); //������ ��'��� � �����
-                    if (returnPixelColor(let1) == "BLACK") // ���� ���� ������ ������, �� ������� � ����� 1
+                    cir = new Circle ((j)*2,(height-1-i),1, Color.valueOf((returnPixelColor(let1))));
+                    if (returnPixelColor(let1) == "BLACK")
                     {
                         map[j*2][height-1-i] = '1';
-                        numberOfPixels++; // �������� ������� ������ ������
+                        numberOfPixels++;
                     }
                     else
                     {
                         map[j*2][height-1-i] = '0';
                     }
                 }
-                if(j*2+1<width) // ��� ������� ������
+                if(j*2+1<width)
                 {
                     cir = new Circle ((j)*2+1,(height-1-i),1,Color.valueOf((returnPixelColor(let2))));
-                    //root.getChildren().add(cir);
                     if (returnPixelColor(let2) == "BLACK")
                     {
                         map[j*2+1][height-1-i] = '1';
@@ -101,8 +97,8 @@ public class PrintingImage extends Application{
                 }
             }
         }
-        primaryStage.setScene(scene); // ���������� �����
-        primaryStage.show(); // ��������� �����
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
         reader.close();
 
@@ -110,10 +106,10 @@ public class PrintingImage extends Application{
         black = new int[numberOfPixels][2];
         int lich = 0;
 
-        BufferedOutputStream writer = new BufferedOutputStream (new FileOutputStream("map.txt")); // �������� ����� ��� ���� �� �������� � ����
-        for(int i=0;i<height;i++)     // ���� �� ����� ���������� �� �����
+        BufferedOutputStream writer = new BufferedOutputStream (new FileOutputStream("Lab3/map.txt"));
+        for(int i=0;i<height;i++)
         {
-            for(int j=0;j<width;j++)         // ���� �� ����� ���������� �� ������
+            for(int j=0;j<width;j++)
             {
                 if (map[j][i] == '1')
                 {
@@ -238,7 +234,7 @@ public class PrintingImage extends Application{
 
     }
 
-    private String returnPixelColor (int color) // ����� ��� ������������ ������� 16-������ ����������
+    private String returnPixelColor (int color)
     {
         String col = "BLACK";
         switch(color)

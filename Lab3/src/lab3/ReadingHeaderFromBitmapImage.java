@@ -134,7 +134,7 @@ public class ReadingHeaderFromBitmapImage {
 // вертаємося на те місце звідки мають починатися пікселі
         reader.reset();
 // запишемо в окремий файл частину зображення, з якої починаються власне пікселі
-        BufferedOutputStream writer = new BufferedOutputStream(new FileOutputStream("pixels.txt"));
+        BufferedOutputStream writer = new BufferedOutputStream(new FileOutputStream("Lab3/pixels.txt"));
         while ((line = reader.read())!=-1)
         {
             writer.write(line);

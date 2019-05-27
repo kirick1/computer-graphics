@@ -299,25 +299,25 @@ public class Solar extends Applet {
         }
     }
 
-    private void createSun(TransformGroup group) { createPlanet(0.5f,100000,"source\\sunmap.jpg",group, true); }
+    private void createSun(TransformGroup group) { createPlanet(0.5f,100000,"Lab4/source/sunmap.jpg",group, true); }
 
-    private void createEarth(TransformGroup group) { createPlanet(0.08f,1000,"source\\earthmap1k.jpg",group, false); }
+    private void createEarth(TransformGroup group) { createPlanet(0.08f,1000,"Lab4/source/earthmap1k.jpg",group, false); }
 
-    private void createMoon(TransformGroup group) {createPlanet(0.02f,0,"source\\moonmap1k.jpg",group, false);}
+    private void createMoon(TransformGroup group) {createPlanet(0.02f,0,"Lab4/source/moonmap1k.jpg",group, false);}
 
-    private void createMercury(TransformGroup group) {createPlanet(0.04f, 30, "source\\mercurymap.jpg", group, false);}
+    private void createMercury(TransformGroup group) {createPlanet(0.04f, 30, "Lab4/source/mercurymap.jpg", group, false);}
 
-    private void createVenus(TransformGroup group) {createPlanet(0.08f, 10, "source\\venusmap.jpg", group, false);}
+    private void createVenus(TransformGroup group) {createPlanet(0.08f, 10, "Lab4/source/venusmap.jpg", group, false);}
 
-    private void createMars(TransformGroup group) {createPlanet(0.05f, 1000, "source\\marsmap1k.jpg", group, false);}
+    private void createMars(TransformGroup group) {createPlanet(0.05f, 1000, "Lab4/source/marsmap1k.jpg", group, false);}
 
-    private void createJupiter(TransformGroup group) {createPlanet(0.4f, 2400, "source\\jupitermap.jpg", group, false);}
+    private void createJupiter(TransformGroup group) {createPlanet(0.4f, 2400, "Lab4/source/jupitermap.jpg", group, false);}
 
-    private void createSaturn(TransformGroup group) {createPlanet(0.35f, 2200, "source\\saturnmap.jpg", group, false);}
+    private void createSaturn(TransformGroup group) {createPlanet(0.35f, 2200, "Lab4/source/saturnmap.jpg", group, false);}
 
-    private void createUranus(TransformGroup group) {createPlanet(0.2f, 1250, "source\\uranusmap.jpg", group, false);}
+    private void createUranus(TransformGroup group) {createPlanet(0.2f, 1250, "Lab4/source/uranusmap.jpg", group, false);}
 
-    private void createNeptune(TransformGroup group) {createPlanet(0.2f, 1350, "source\\neptunemap.jpg", group, false);}
+    private void createNeptune(TransformGroup group) {createPlanet(0.2f, 1350, "Lab4/source/neptunemap.jpg", group, false);}
 
-    private void createPluto(TransformGroup group) {createPlanet(0.03f, 100, "source\\plutomap1k.jpg", group, false);}
+    private void createPluto(TransformGroup group) {createPlanet(0.03f, 100, "Lab4/source/plutomap1k.jpg", group, false);}
 }

@@ -111,7 +111,7 @@ public class Smile extends Application {
     private Path getTrajectoryPath() throws IOException {
         int numberOfPixels = 0;
 
-        FileInputStream fileInputStream = new FileInputStream("./sources/111.bmp");
+        FileInputStream fileInputStream = new FileInputStream("Lab3/sources/111.bmp");
         BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
         HeaderBitmapImage image = new ReadingHeaderFromBitmapImage().Reading(bufferedInputStream);
         int width = (int) image.getWidth();
@@ -121,7 +121,7 @@ public class Smile extends Application {
         int let, let1, let2;
         char[][] map = new char[width][height];
 
-        BufferedInputStream reader = new BufferedInputStream(new FileInputStream("pixels.txt"));
+        BufferedInputStream reader = new BufferedInputStream(new FileInputStream("Lab3/pixels.txt"));
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < half; j++) {
@@ -151,7 +151,7 @@ public class Smile extends Application {
         int[][] black = new int[numberOfPixels][2];
         int lich = 0;
 
-        BufferedOutputStream writer = new BufferedOutputStream(new FileOutputStream("map.txt"));
+        BufferedOutputStream writer = new BufferedOutputStream(new FileOutputStream("Lab3/map.txt"));
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++){
                 if (map[j][i] == '1') {
