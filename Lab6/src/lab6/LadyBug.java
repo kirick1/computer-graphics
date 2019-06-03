@@ -57,7 +57,7 @@ public class LadyBug extends JFrame{
         ObjectFile f = new ObjectFile(ObjectFile.RESIZE);
         Scene bugScene = null;
         try {
-            bugScene = f.load("models/ladybug.obj");
+            bugScene = f.load("Lab6/models/ladybug.obj");
         }
         catch (Exception e){
             System.out.println("File loading failed:" + e);
@@ -86,7 +86,7 @@ public class LadyBug extends JFrame{
 
         TransformGroup tgBody = new TransformGroup();
         Shape3D body_bug = (Shape3D) roachNamedObjects.get("ladybug");
-        body_bug.setAppearance(loadTexture("source_folder/ladybug.jpg", true));
+        body_bug.setAppearance(loadTexture("Lab6/source_folder/ladybug.jpg", true));
         tgBody.addChild(body_bug.cloneTree());
 
 
@@ -127,7 +127,7 @@ public class LadyBug extends JFrame{
         scene.addChild(tgBug);
 
         //створюємо фон
-        addImageBackground("source_folder/grass.jpg", scene);
+        addImageBackground("Lab6/source_folder/grass.jpg", scene);
         scene.compile();
 
         //додаємо сцену до віртуального всесвіту

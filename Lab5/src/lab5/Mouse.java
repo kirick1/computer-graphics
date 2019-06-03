@@ -34,7 +34,7 @@ class Mouse extends JFrame {
         root = new BranchGroup();
         root.setCapability(BranchGroup.ALLOW_CHILDREN_EXTEND);
 
-        addImageBackground("source_folder/table.jpg");
+        addImageBackground("Lab5/source_folder/table.jpg");
         addLightToUniverse();
 
         changeViewAngle();
@@ -117,7 +117,7 @@ class Mouse extends JFrame {
         yRotation.mul(zRotation);
         scale.mul(yRotation);
 
-        TransformGroup group = getModelGroup("source_folder/Mouse.obj");
+        TransformGroup group = getModelGroup("Lab5/source_folder/Mouse.obj");
         group.setTransform(scale);
         return group;
     }
